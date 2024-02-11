@@ -1,5 +1,5 @@
 import Form from "@components/Form"
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 const EditPrompt = () => {
