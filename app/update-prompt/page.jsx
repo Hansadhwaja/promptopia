@@ -1,3 +1,5 @@
+
+'use client'
 import Form from "@components/Form"
 import { useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
