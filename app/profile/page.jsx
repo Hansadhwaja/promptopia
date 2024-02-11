@@ -14,7 +14,6 @@ const MyProfile = () => {
         const fetchPosts = async () => {
             const response = await fetch(`/api/users/${session?.user.id}/posts`);
             const data = await response.json();
-
             setPosts(data);
         };
 
@@ -27,11 +26,14 @@ const MyProfile = () => {
     const handleDelete = async (post) => {
         const hasConfirmed = confirm("Are you sure you want to delete this prompt ? ");
         try {
-            await fetch(`/api/prompt/${post._id.toString()}`, {
-                method: 'DELETE'
-            });
-            const filterPosts = posts.filter((p) => p._id !== post._id);
-            setPosts(filterPosts);
+            if(hasConfirmed){
+                await fetch(`/api/prompt/${post._id.toString()}`, {
+                    method: 'DELETE'
+                });
+                const filterPosts = posts.filter((p) => p._id !== post._id);
+                setPosts(filterPosts);
+            }
+           
         } catch (error) {
             console.log(error);
         }
