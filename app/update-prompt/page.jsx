@@ -54,7 +54,7 @@ const UpdatePrompt = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}> {/* Wrap the Form component with Suspense */}
+    <Suspense fallback={true}> {/* Wrap the Form component with Suspense */}
       <Form
         type='Edit'
         post={post}
