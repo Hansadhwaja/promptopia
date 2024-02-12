@@ -6,7 +6,7 @@ import { connectTODB } from "@utils/database"
 export const GET = async (request, { params }) => {
     try {
         await connectTODB();
-        const prompts = await Prompt.findById(params.id).populate('creator');
+        const prompts = await Prompt.findById(params.id).populate('creator').exec();
 
         if (!prompts) return new Response('Prompt not found', { status: 404 });
 
