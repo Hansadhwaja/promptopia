@@ -5,7 +5,8 @@ export const GET = async (request) => {
     try {
         await connectToDB()
 
-        const prompts = await Prompt.find({}).populate('creator');
+        const prompts = await Prompt.find({}).populate('creator').maxTimeMS(20000); // Set timeout to 20 seconds (20000 milliseconds)
+
 
         return new Response(JSON.stringify(prompts), { status: 200 })
     } catch (error) {
