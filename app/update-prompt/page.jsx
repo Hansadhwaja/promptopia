@@ -8,16 +8,15 @@ import Form from "@components/Form";
 const UpdatePrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = null|| searchParams.get("id");
+  const promptId = searchParams.get("id");
 
   const [post, setPost] = useState({ prompt: "", tag: "", });
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const getPromptDetails = async (promptId) => {
-      const response = await fetch(`/api/prompt/${promptId}`,{ method:'GET'});
+    const getPromptDetails = async () => {
+      const response = await fetch(`/api/prompt/${promptId}`);
       const data = await response.json();
-      console.log(data);
 
       setPost({
         prompt: data.prompt,
@@ -25,7 +24,7 @@ const UpdatePrompt = () => {
       });
     };
 
-    if (promptId) getPromptDetails(promptId);
+    if (promptId) getPromptDetails();
   }, [promptId]);
 
   const updatePrompt = async (e) => {
@@ -54,14 +53,13 @@ const UpdatePrompt = () => {
   };
 
   return (
-      <Form
-        type='Edit'
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        handleSubmit={updatePrompt}
-      />
-
+    <Form
+      type='Edit'
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={updatePrompt}
+    />
   );
 };
 
