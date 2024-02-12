@@ -1,11 +1,11 @@
 import Prompt from "@models/prompt";
 import {  connectToDB } from "@utils/database";
 
-export const GET = async (request) => {
+export const GET = async () => {
     try {
         await connectToDB()
 
-        const prompts = await Prompt.find({}).populate('creator').maxTimeMS(20000); // Set timeout to 20 seconds (20000 milliseconds)
+        const prompts = await Prompt.find({}).populate('creator'); // Set timeout to 20 seconds (20000 milliseconds)
 
 
         return new Response(JSON.stringify(prompts), { status: 200 })
