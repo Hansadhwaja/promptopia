@@ -14,9 +14,10 @@ const UpdatePrompt = () => {
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
+    const getPromptDetails = async (promptId) => {
+      const response = await fetch(`/api/prompt/${promptId}`,{ method:'GET'});
       const data = await response.json();
+      console.log(data);
 
       setPost({
         prompt: data.prompt,
@@ -24,7 +25,7 @@ const UpdatePrompt = () => {
       });
     };
 
-    if (promptId) getPromptDetails();
+    if (promptId) getPromptDetails(promptId);
   }, [promptId]);
 
   const updatePrompt = async (e) => {
