@@ -11,7 +11,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
         <PromptCard
           key={post._id}
           post={post}
-          handleTagClick={handleTagClick}
+        //handleTagClick={handleTagClick}
         />
       ))}
     </div>
@@ -22,19 +22,18 @@ const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   // // Search states
-  // const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
   // const [searchTimeout, setSearchTimeout] = useState(null);
   // const [searchedResults, setSearchedResults] = useState([]);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
-    const data = await response.json();
-console.log(data);
-    setAllPosts(data);
-  };
-  
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("/api/prompt");
+      const data = await response.json();
+      console.log(data);
+      setAllPosts(data);
+    }
+    
     fetchPosts();
   }, []);
 
@@ -92,9 +91,9 @@ console.log(data);
         //handleTagClick={handleTagClick}
          />
       )} */}
-      <PromptCardList data={allPosts} 
-        //handleTagClick={handleTagClick}
-         />
+      <PromptCardList data={allPosts}
+      //handleTagClick={handleTagClick}
+      />
     </section>
   );
 };
