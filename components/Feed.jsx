@@ -19,7 +19,6 @@ const PromptCardList = ({ data }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
-  console.log(allPosts);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,7 +28,7 @@ const Feed = () => {
     }
 
     fetchPosts();
-  }, []);
+  }, [allPosts]);
 
 
   return (
